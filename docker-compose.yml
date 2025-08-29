@@ -10,8 +10,13 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+    env_file:
+      - .env
     environment:
+      - AUDIO_FILE=${AUDIO_FILE}
+      - OUTPUT_FILE=${OUTPUT_FILE}
       - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+      - FASTER_WHISPER=${FASTER_WHISPER}
     volumes:
       - ./audio:/app/audio
       - ./output:/app/output
